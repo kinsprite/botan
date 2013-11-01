@@ -80,9 +80,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\algo_base\symkey.cpp" />
     <ClCompile Include="..\..\src\block\aes\aes.cpp" />
     <ClCompile Include="..\..\src\block\aes_ssse3\aes_ssse3.cpp" />
+    <ClCompile Include="..\..\src\codec\base64\base64.cpp" />
+    <ClCompile Include="..\..\src\codec\hex\hex.cpp" />
     <ClCompile Include="..\..\src\hash\keccak\keccak.cpp" />
+    <ClCompile Include="..\..\src\hash\md5\md5.cpp" />
+    <ClCompile Include="..\..\src\hash\mdx_hash\mdx_hash.cpp" />
+    <ClCompile Include="..\..\src\modes\mode_pad\mode_pad.cpp" />
+    <ClCompile Include="..\..\src\modes\xts\xts.cpp" />
     <ClCompile Include="..\..\src\utils\assert.cpp" />
     <ClCompile Include="..\..\src\utils\zero_mem.cpp" />
     <ClCompile Include="main.cpp" />
