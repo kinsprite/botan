@@ -1,0 +1,1494 @@
+### Compiler Options
+CXX           = cl /MD
+LIB_OPT       = /O2
+CHECK_OPT     = /O2 /D_CONSOLE
+LANG_FLAGS    = /EHs /GR
+WARN_FLAGS    = /W3 /wd4275 /wd4267
+SO_OBJ_FLAGS  =  /DBOTAN_DLL=__declspec(dllexport)
+LIB_LINK_CMD  = $(CXX) /LD
+LINK_TO       = advapi32.lib user32.lib
+
+LIB_FLAGS     = $(LIB_OPT) $(LANG_FLAGS) $(WARN_FLAGS) $(SO_OBJ_FLAGS)
+CHECK_FLAGS   = $(CHECK_OPT) $(LANG_FLAGS) $(WARN_FLAGS)
+
+### Version Numbers
+VERSION       = 1.11.5
+
+### Installation Settings
+DESTDIR       = c:\Botan
+
+### Aliases for Common Programs
+AR            = lib
+COPY          = copy
+CD            = @cd
+ECHO          = @echo
+INSTALL       = copy
+INSTALL_CMD   = copy
+MKDIR         = @md
+MKDIR_INSTALL = @md
+RM            = @del /Q
+RM_R          = $(RM) /S
+RMDIR         = @rmdir
+
+### File Lists
+CHECK         = check
+
+HEADERS       = src\algo_base\algo_base.h \
+                src\algo_base\buf_comp.h \
+                src\algo_base\key_spec.h \
+                src\algo_base\sym_algo.h \
+                src\algo_base\symkey.h \
+                src\algo_base\transform.h \
+                src\algo_factory\algo_factory.h \
+                src\alloc\secmem.h \
+                src\asn1\alg_id.h \
+                src\asn1\asn1_alt_name.h \
+                src\asn1\asn1_attribute.h \
+                src\asn1\asn1_obj.h \
+                src\asn1\asn1_oid.h \
+                src\asn1\asn1_str.h \
+                src\asn1\asn1_time.h \
+                src\asn1\ber_dec.h \
+                src\asn1\der_enc.h \
+                src\asn1\x509_dn.h \
+                src\benchmark\benchmark.h \
+                src\block\aes\aes.h \
+                src\block\block_cipher.h \
+                src\block\blowfish\blowfish.h \
+                src\block\camellia\camellia.h \
+                src\block\cascade\cascade.h \
+                src\block\cast\cast128.h \
+                src\block\cast\cast256.h \
+                src\block\des\des.h \
+                src\block\des\desx.h \
+                src\block\gost_28147\gost_28147.h \
+                src\block\idea\idea.h \
+                src\block\kasumi\kasumi.h \
+                src\block\lion\lion.h \
+                src\block\lubyrack\lubyrack.h \
+                src\block\mars\mars.h \
+                src\block\misty1\misty1.h \
+                src\block\noekeon\noekeon.h \
+                src\block\noekeon_simd\noekeon_simd.h \
+                src\block\rc2\rc2.h \
+                src\block\rc5\rc5.h \
+                src\block\rc6\rc6.h \
+                src\block\safer\safer_sk.h \
+                src\block\seed\seed.h \
+                src\block\serpent\serpent.h \
+                src\block\serpent_simd\serp_simd.h \
+                src\block\skipjack\skipjack.h \
+                src\block\square\square.h \
+                src\block\tea\tea.h \
+                src\block\twofish\twofish.h \
+                src\block\xtea\xtea.h \
+                src\block\xtea_simd\xtea_simd.h \
+                src\cert\ocsp\ocsp.h \
+                src\cert\ocsp\ocsp_types.h \
+                src\cert\x509\certstor.h \
+                src\cert\x509\crl_ent.h \
+                src\cert\x509\key_constraint.h \
+                src\cert\x509\pkcs10.h \
+                src\cert\x509\x509_ca.h \
+                src\cert\x509\x509_crl.h \
+                src\cert\x509\x509_ext.h \
+                src\cert\x509\x509_obj.h \
+                src\cert\x509\x509cert.h \
+                src\cert\x509\x509path.h \
+                src\cert\x509\x509self.h \
+                src\checksum\adler32\adler32.h \
+                src\checksum\crc24\crc24.h \
+                src\checksum\crc32\crc32.h \
+                src\codec\base64\base64.h \
+                src\codec\hex\hex.h \
+                src\codec\openpgp\openpgp.h \
+                src\codec\pem\pem.h \
+                src\constructs\aont\package.h \
+                src\constructs\cryptobox\cryptobox.h \
+                src\constructs\cryptobox_psk\cryptobox_psk.h \
+                src\constructs\fpe_fe1\fpe_fe1.h \
+                src\constructs\rfc3394\rfc3394.h \
+                src\constructs\srp6\srp6.h \
+                src\constructs\srp6\srp6_files.h \
+                src\constructs\tss\tss.h \
+                src\credentials\credentials_manager.h \
+                src\engine\dyn_engine\dyn_engine.h \
+                src\engine\engine.h \
+                src\entropy\entropy_src.h \
+                src\filters\aead_filt\aead_filt.h \
+                src\filters\basefilt.h \
+                src\filters\buf_filt.h \
+                src\filters\codec_filt\b64_filt.h \
+                src\filters\codec_filt\hex_filt.h \
+                src\filters\data_snk.h \
+                src\filters\data_src.h \
+                src\filters\filter.h \
+                src\filters\filters.h \
+                src\filters\key_filt.h \
+                src\filters\pipe.h \
+                src\filters\pk_filts\pk_filts.h \
+                src\filters\secqueue.h \
+                src\filters\transform_filter.h \
+                src\hash\bmw_512\bmw_512.h \
+                src\hash\comb4p\comb4p.h \
+                src\hash\gost_3411\gost_3411.h \
+                src\hash\has160\has160.h \
+                src\hash\hash.h \
+                src\hash\keccak\keccak.h \
+                src\hash\md2\md2.h \
+                src\hash\md4\md4.h \
+                src\hash\md5\md5.h \
+                src\hash\mdx_hash\mdx_hash.h \
+                src\hash\par_hash\par_hash.h \
+                src\hash\rmd128\rmd128.h \
+                src\hash\rmd160\rmd160.h \
+                src\hash\sha1\sha160.h \
+                src\hash\sha2_32\sha2_32.h \
+                src\hash\sha2_64\sha2_64.h \
+                src\hash\skein\skein_512.h \
+                src\hash\tiger\tiger.h \
+                src\hash\whirlpool\whrlpool.h \
+                src\kdf\kdf.h \
+                src\kdf\kdf1\kdf1.h \
+                src\kdf\kdf2\kdf2.h \
+                src\kdf\mgf1\mgf1.h \
+                src\kdf\prf_ssl3\prf_ssl3.h \
+                src\kdf\prf_tls\prf_tls.h \
+                src\kdf\prf_x942\prf_x942.h \
+                src\libstate\botan.h \
+                src\libstate\global_state.h \
+                src\libstate\init.h \
+                src\libstate\libstate.h \
+                src\libstate\lookup.h \
+                src\libstate\oid_lookup\oids.h \
+                src\libstate\scan_name.h \
+                src\mac\cbc_mac\cbc_mac.h \
+                src\mac\cmac\cmac.h \
+                src\mac\hmac\hmac.h \
+                src\mac\mac.h \
+                src\mac\ssl3mac\ssl3_mac.h \
+                src\mac\x919_mac\x919_mac.h \
+                src\math\bigint\bigint.h \
+                src\math\bigint\divide.h \
+                src\math\ec_gfp\curve_gfp.h \
+                src\math\ec_gfp\point_gfp.h \
+                src\math\mp\mp_types.h \
+                src\math\numbertheory\numthry.h \
+                src\math\numbertheory\pow_mod.h \
+                src\math\numbertheory\reducer.h \
+                src\modes\aead\aead.h \
+                src\modes\aead\ccm\ccm.h \
+                src\modes\aead\eax\eax.h \
+                src\modes\aead\gcm\gcm.h \
+                src\modes\aead\ocb\ocb.h \
+                src\modes\cbc\cbc.h \
+                src\modes\cfb\cfb.h \
+                src\modes\cipher_mode.h \
+                src\modes\ecb\ecb.h \
+                src\modes\mode_pad\mode_pad.h \
+                src\modes\xts\xts.h \
+                src\passhash\bcrypt\bcrypt.h \
+                src\passhash\passhash9\passhash9.h \
+                src\pbe\get_pbe.h \
+                src\pbe\pbe.h \
+                src\pbe\pbes1\pbes1.h \
+                src\pbe\pbes2\pbes2.h \
+                src\pbkdf\pbkdf.h \
+                src\pbkdf\pbkdf1\pbkdf1.h \
+                src\pbkdf\pbkdf2\pbkdf2.h \
+                src\pk_pad\eme.h \
+                src\pk_pad\eme1\eme1.h \
+                src\pk_pad\eme_pkcs\eme_pkcs.h \
+                src\pk_pad\emsa.h \
+                src\pk_pad\emsa1\emsa1.h \
+                src\pk_pad\emsa1_bsi\emsa1_bsi.h \
+                src\pk_pad\emsa2\emsa2.h \
+                src\pk_pad\emsa3\emsa3.h \
+                src\pk_pad\emsa4\emsa4.h \
+                src\pk_pad\emsa_raw\emsa_raw.h \
+                src\pk_pad\hash_id\hash_id.h \
+                src\pubkey\blinding.h \
+                src\pubkey\dh\dh.h \
+                src\pubkey\dl_algo\dl_algo.h \
+                src\pubkey\dl_group\dl_group.h \
+                src\pubkey\dlies\dlies.h \
+                src\pubkey\dsa\dsa.h \
+                src\pubkey\ec_group\ec_group.h \
+                src\pubkey\ecc_key\ecc_key.h \
+                src\pubkey\ecdh\ecdh.h \
+                src\pubkey\ecdsa\ecdsa.h \
+                src\pubkey\elgamal\elgamal.h \
+                src\pubkey\gost_3410\gost_3410.h \
+                src\pubkey\if_algo\if_algo.h \
+                src\pubkey\keypair\keypair.h \
+                src\pubkey\nr\nr.h \
+                src\pubkey\pk_keys.h \
+                src\pubkey\pk_ops.h \
+                src\pubkey\pkcs8.h \
+                src\pubkey\pubkey.h \
+                src\pubkey\rsa\rsa.h \
+                src\pubkey\rw\rw.h \
+                src\pubkey\x509_key.h \
+                src\rng\auto_rng\auto_rng.h \
+                src\rng\hmac_rng\hmac_rng.h \
+                src\rng\randpool\randpool.h \
+                src\rng\rng.h \
+                src\rng\x931_rng\x931_rng.h \
+                src\selftest\selftest.h \
+                src\stream\ctr\ctr.h \
+                src\stream\ofb\ofb.h \
+                src\stream\rc4\rc4.h \
+                src\stream\salsa20\salsa20.h \
+                src\stream\stream_cipher.h \
+                src\tls\tls_alert.h \
+                src\tls\tls_blocking.h \
+                src\tls\tls_channel.h \
+                src\tls\tls_ciphersuite.h \
+                src\tls\tls_client.h \
+                src\tls\tls_exceptn.h \
+                src\tls\tls_handshake_msg.h \
+                src\tls\tls_magic.h \
+                src\tls\tls_policy.h \
+                src\tls\tls_server.h \
+                src\tls\tls_server_info.h \
+                src\tls\tls_session.h \
+                src\tls\tls_session_manager.h \
+                src\tls\tls_version.h \
+                src\utils\assert.h \
+                src\utils\bswap.h \
+                src\utils\calendar.h \
+                src\utils\charset.h \
+                src\utils\cpuid.h \
+                src\utils\datastor\datastor.h \
+                src\utils\exceptn.h \
+                src\utils\get_byte.h \
+                src\utils\loadstor.h \
+                src\utils\mem_ops.h \
+                src\utils\mul128.h \
+                src\utils\parsing.h \
+                src\utils\rotate.h \
+                src\utils\types.h \
+                src\utils\version.h \
+                build\build.h
+
+LIBOBJS       = build\lib\algo_base_symkey.obj \
+                build\lib\algo_factory.obj \
+                build\lib\algo_factory_prov_weight.obj \
+                build\lib\asn1_alg_id.obj \
+                build\lib\asn1_asn1_alt_name.obj \
+                build\lib\asn1_asn1_attribute.obj \
+                build\lib\asn1_asn1_obj.obj \
+                build\lib\asn1_asn1_oid.obj \
+                build\lib\asn1_asn1_str.obj \
+                build\lib\asn1_asn1_time.obj \
+                build\lib\asn1_ber_dec.obj \
+                build\lib\asn1_der_enc.obj \
+                build\lib\asn1_x509_dn.obj \
+                build\lib\benchmark.obj \
+                build\lib\block_aes.obj \
+                build\lib\block_blowfish_blfs_tab.obj \
+                build\lib\block_blowfish.obj \
+                build\lib\block_camellia.obj \
+                build\lib\block_cascade.obj \
+                build\lib\block_cast_cast128.obj \
+                build\lib\block_cast_cast256.obj \
+                build\lib\block_des.obj \
+                build\lib\block_des_des_tab.obj \
+                build\lib\block_des_desx.obj \
+                build\lib\block_gost_28147.obj \
+                build\lib\block_idea.obj \
+                build\lib\block_kasumi.obj \
+                build\lib\block_lion.obj \
+                build\lib\block_lubyrack.obj \
+                build\lib\block_mars.obj \
+                build\lib\block_misty1.obj \
+                build\lib\block_noekeon.obj \
+                build\lib\block_noekeon_simd.obj \
+                build\lib\block_rc2.obj \
+                build\lib\block_rc5.obj \
+                build\lib\block_rc6.obj \
+                build\lib\block_safer_safer_sk.obj \
+                build\lib\block_seed.obj \
+                build\lib\block_seed_seed_tab.obj \
+                build\lib\block_serpent.obj \
+                build\lib\block_serpent_simd_serp_simd.obj \
+                build\lib\block_skipjack.obj \
+                build\lib\block_square_sqr_tab.obj \
+                build\lib\block_square.obj \
+                build\lib\block_tea.obj \
+                build\lib\block_twofish_two_tab.obj \
+                build\lib\block_twofish.obj \
+                build\lib\block_xtea.obj \
+                build\lib\block_xtea_simd.obj \
+                build\lib\cert_ocsp.obj \
+                build\lib\cert_ocsp_ocsp_types.obj \
+                build\lib\cert_x509_certstor.obj \
+                build\lib\cert_x509_crl_ent.obj \
+                build\lib\cert_x509_key_constraint.obj \
+                build\lib\cert_x509_pkcs10.obj \
+                build\lib\cert_x509_x509_ca.obj \
+                build\lib\cert_x509_x509_crl.obj \
+                build\lib\cert_x509_x509_ext.obj \
+                build\lib\cert_x509_x509_obj.obj \
+                build\lib\cert_x509_x509cert.obj \
+                build\lib\cert_x509_x509opt.obj \
+                build\lib\cert_x509_x509path.obj \
+                build\lib\cert_x509_x509self.obj \
+                build\lib\checksum_adler32.obj \
+                build\lib\checksum_crc24.obj \
+                build\lib\checksum_crc32.obj \
+                build\lib\codec_base64.obj \
+                build\lib\codec_hex.obj \
+                build\lib\codec_openpgp.obj \
+                build\lib\codec_pem.obj \
+                build\lib\constructs_aont_package.obj \
+                build\lib\constructs_cryptobox.obj \
+                build\lib\constructs_cryptobox_psk.obj \
+                build\lib\constructs_fpe_fe1.obj \
+                build\lib\constructs_rfc3394.obj \
+                build\lib\constructs_srp6.obj \
+                build\lib\constructs_srp6_srp6_files.obj \
+                build\lib\constructs_tss.obj \
+                build\lib\credentials_credentials_manager.obj \
+                build\lib\engine_core_engine_core_modes.obj \
+                build\lib\engine_core_engine_def_pk_ops.obj \
+                build\lib\engine_core_engine_def_powm.obj \
+                build\lib\engine_core_engine_lookup_block.obj \
+                build\lib\engine_core_engine_lookup_hash.obj \
+                build\lib\engine_core_engine_lookup_mac.obj \
+                build\lib\engine_core_engine_lookup_pbkdf.obj \
+                build\lib\engine_core_engine_lookup_stream.obj \
+                build\lib\engine_dyn_engine.obj \
+                build\lib\engine.obj \
+                build\lib\engine_simd_engine.obj \
+                build\lib\entropy_cryptoapi_rng_es_capi.obj \
+                build\lib\entropy_hres_timer.obj \
+                build\lib\entropy_win32_stats_es_win32.obj \
+                build\lib\filters_algo_filt.obj \
+                build\lib\filters_basefilt.obj \
+                build\lib\filters_buf_filt.obj \
+                build\lib\filters_codec_filt_b64_filt.obj \
+                build\lib\filters_codec_filt_hex_filt.obj \
+                build\lib\filters_data_snk.obj \
+                build\lib\filters_data_src.obj \
+                build\lib\filters_filter.obj \
+                build\lib\filters_out_buf.obj \
+                build\lib\filters_pipe.obj \
+                build\lib\filters_pipe_io.obj \
+                build\lib\filters_pipe_rw.obj \
+                build\lib\filters_pk_filts.obj \
+                build\lib\filters_secqueue.obj \
+                build\lib\filters_threaded_fork.obj \
+                build\lib\filters_transform_filter.obj \
+                build\lib\hash_bmw_512.obj \
+                build\lib\hash_comb4p.obj \
+                build\lib\hash_gost_3411.obj \
+                build\lib\hash_has160.obj \
+                build\lib\hash_keccak.obj \
+                build\lib\hash_md2.obj \
+                build\lib\hash_md4.obj \
+                build\lib\hash_md5.obj \
+                build\lib\hash_mdx_hash.obj \
+                build\lib\hash_par_hash.obj \
+                build\lib\hash_rmd128.obj \
+                build\lib\hash_rmd160.obj \
+                build\lib\hash_sha1_sha160.obj \
+                build\lib\hash_sha2_32.obj \
+                build\lib\hash_sha2_64.obj \
+                build\lib\hash_skein_skein_512.obj \
+                build\lib\hash_tiger_tig_tab.obj \
+                build\lib\hash_tiger.obj \
+                build\lib\hash_whirlpool_whrl_tab.obj \
+                build\lib\hash_whirlpool_whrlpool.obj \
+                build\lib\kdf.obj \
+                build\lib\kdf_kdf1.obj \
+                build\lib\kdf_kdf2.obj \
+                build\lib\kdf_mgf1.obj \
+                build\lib\kdf_prf_ssl3.obj \
+                build\lib\kdf_prf_tls.obj \
+                build\lib\kdf_prf_x942.obj \
+                build\lib\libstate_get_enc.obj \
+                build\lib\libstate_global_rng.obj \
+                build\lib\libstate_global_state.obj \
+                build\lib\libstate_init.obj \
+                build\lib\libstate.obj \
+                build\lib\libstate_lookup.obj \
+                build\lib\libstate_oid_lookup_oids.obj \
+                build\lib\libstate_policy.obj \
+                build\lib\libstate_scan_name.obj \
+                build\lib\mac_cbc_mac.obj \
+                build\lib\mac_cmac.obj \
+                build\lib\mac_hmac.obj \
+                build\lib\mac.obj \
+                build\lib\mac_ssl3mac_ssl3_mac.obj \
+                build\lib\mac_x919_mac.obj \
+                build\lib\math_bigint_big_code.obj \
+                build\lib\math_bigint_big_io.obj \
+                build\lib\math_bigint_big_ops2.obj \
+                build\lib\math_bigint_big_ops3.obj \
+                build\lib\math_bigint_big_rand.obj \
+                build\lib\math_bigint.obj \
+                build\lib\math_bigint_divide.obj \
+                build\lib\math_ec_gfp_point_gfp.obj \
+                build\lib\math_mp_mp_asm.obj \
+                build\lib\math_mp_mp_comba.obj \
+                build\lib\math_mp_mp_karat.obj \
+                build\lib\math_mp_mp_misc.obj \
+                build\lib\math_mp_mp_monty.obj \
+                build\lib\math_mp_mp_mulop.obj \
+                build\lib\math_mp_mp_shift.obj \
+                build\lib\math_numbertheory_dsa_gen.obj \
+                build\lib\math_numbertheory_jacobi.obj \
+                build\lib\math_numbertheory_make_prm.obj \
+                build\lib\math_numbertheory_mp_numth.obj \
+                build\lib\math_numbertheory_numthry.obj \
+                build\lib\math_numbertheory_pow_mod.obj \
+                build\lib\math_numbertheory_powm_fw.obj \
+                build\lib\math_numbertheory_powm_mnt.obj \
+                build\lib\math_numbertheory_primes.obj \
+                build\lib\math_numbertheory_reducer.obj \
+                build\lib\math_numbertheory_ressol.obj \
+                build\lib\modes_aead.obj \
+                build\lib\modes_aead_ccm.obj \
+                build\lib\modes_aead_eax.obj \
+                build\lib\modes_aead_gcm.obj \
+                build\lib\modes_aead_ocb.obj \
+                build\lib\modes_cbc.obj \
+                build\lib\modes_cfb.obj \
+                build\lib\modes_ecb.obj \
+                build\lib\modes_mode_pad.obj \
+                build\lib\modes_xts.obj \
+                build\lib\passhash_bcrypt.obj \
+                build\lib\passhash_passhash9.obj \
+                build\lib\pbe_get_pbe.obj \
+                build\lib\pbe_pbes1.obj \
+                build\lib\pbe_pbes2.obj \
+                build\lib\pbkdf.obj \
+                build\lib\pbkdf_pbkdf1.obj \
+                build\lib\pbkdf_pbkdf2.obj \
+                build\lib\pk_pad_eme.obj \
+                build\lib\pk_pad_eme1.obj \
+                build\lib\pk_pad_eme_pkcs.obj \
+                build\lib\pk_pad_emsa1.obj \
+                build\lib\pk_pad_emsa1_bsi.obj \
+                build\lib\pk_pad_emsa2.obj \
+                build\lib\pk_pad_emsa3.obj \
+                build\lib\pk_pad_emsa4.obj \
+                build\lib\pk_pad_emsa_raw.obj \
+                build\lib\pk_pad_hash_id.obj \
+                build\lib\pubkey_blinding.obj \
+                build\lib\pubkey_dh.obj \
+                build\lib\pubkey_dl_algo.obj \
+                build\lib\pubkey_dl_group.obj \
+                build\lib\pubkey_dlies.obj \
+                build\lib\pubkey_dsa.obj \
+                build\lib\pubkey_ec_group.obj \
+                build\lib\pubkey_ecc_key.obj \
+                build\lib\pubkey_ecdh.obj \
+                build\lib\pubkey_ecdsa.obj \
+                build\lib\pubkey_elgamal.obj \
+                build\lib\pubkey_gost_3410.obj \
+                build\lib\pubkey_if_algo.obj \
+                build\lib\pubkey_keypair.obj \
+                build\lib\pubkey_nr.obj \
+                build\lib\pubkey_pk_algs.obj \
+                build\lib\pubkey_pk_keys.obj \
+                build\lib\pubkey_pkcs8.obj \
+                build\lib\pubkey.obj \
+                build\lib\pubkey_rsa.obj \
+                build\lib\pubkey_rw.obj \
+                build\lib\pubkey_workfactor.obj \
+                build\lib\pubkey_x509_key.obj \
+                build\lib\rng_hmac_rng.obj \
+                build\lib\rng_randpool.obj \
+                build\lib\rng.obj \
+                build\lib\rng_x931_rng.obj \
+                build\lib\selftest.obj \
+                build\lib\stream_ctr.obj \
+                build\lib\stream_ofb.obj \
+                build\lib\stream_rc4.obj \
+                build\lib\stream_salsa20.obj \
+                build\lib\stream_stream_cipher.obj \
+                build\lib\tls_msg_cert_req.obj \
+                build\lib\tls_msg_cert_verify.obj \
+                build\lib\tls_msg_certificate.obj \
+                build\lib\tls_msg_client_hello.obj \
+                build\lib\tls_msg_client_kex.obj \
+                build\lib\tls_msg_finished.obj \
+                build\lib\tls_msg_hello_verify.obj \
+                build\lib\tls_msg_next_protocol.obj \
+                build\lib\tls_msg_server_hello.obj \
+                build\lib\tls_msg_server_kex.obj \
+                build\lib\tls_msg_session_ticket.obj \
+                build\lib\tls_alert.obj \
+                build\lib\tls_blocking.obj \
+                build\lib\tls_channel.obj \
+                build\lib\tls_ciphersuite.obj \
+                build\lib\tls_client.obj \
+                build\lib\tls_extensions.obj \
+                build\lib\tls_handshake_hash.obj \
+                build\lib\tls_handshake_io.obj \
+                build\lib\tls_handshake_state.obj \
+                build\lib\tls_heartbeats.obj \
+                build\lib\tls_policy.obj \
+                build\lib\tls_record.obj \
+                build\lib\tls_server.obj \
+                build\lib\tls_session.obj \
+                build\lib\tls_session_key.obj \
+                build\lib\tls_session_manager.obj \
+                build\lib\tls_suite_info.obj \
+                build\lib\tls_version.obj \
+                build\lib\utils_assert.obj \
+                build\lib\utils_calendar.obj \
+                build\lib\utils_charset.obj \
+                build\lib\utils_cpuid.obj \
+                build\lib\utils_datastor.obj \
+                build\lib\utils_dyn_load.obj \
+                build\lib\utils_parsing.obj \
+                build\lib\utils_semaphore.obj \
+                build\lib\utils_version.obj \
+                build\lib\utils_zero_mem.obj
+
+CHECKOBJS     = build\checks\bench.obj \
+                build\checks\bigint.obj \
+                build\checks\check.obj \
+                build\checks\cvc_tests.obj \
+                build\checks\dolook.obj \
+                build\checks\ec_tests.obj \
+                build\checks\ecdh.obj \
+                build\checks\ecdsa.obj \
+                build\checks\misc.obj \
+                build\checks\ocb.obj \
+                build\checks\pk.obj \
+                build\checks\pk_bench.obj \
+                build\checks\timer.obj \
+                build\checks\tls.obj \
+                build\checks\validate.obj \
+                build\checks\x509.obj
+
+LIBNAME       = botan
+
+LIBRARIES     = $(BOTAN_LIB)
+
+# This will be either a static lib or the DLL import lib
+BOTAN_LIB     = $(LIBNAME).lib
+
+all: $(LIBRARIES)
+
+### Build Commands
+build\lib\algo_base_symkey.obj: src\algo_base\symkey.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\algo_factory.obj: src\algo_factory\algo_factory.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\algo_factory_prov_weight.obj: src\algo_factory\prov_weight.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_alg_id.obj: src\asn1\alg_id.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_alt_name.obj: src\asn1\asn1_alt_name.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_attribute.obj: src\asn1\asn1_attribute.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_obj.obj: src\asn1\asn1_obj.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_oid.obj: src\asn1\asn1_oid.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_str.obj: src\asn1\asn1_str.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_asn1_time.obj: src\asn1\asn1_time.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_ber_dec.obj: src\asn1\ber_dec.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_der_enc.obj: src\asn1\der_enc.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\asn1_x509_dn.obj: src\asn1\x509_dn.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\benchmark.obj: src\benchmark\benchmark.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_aes.obj: src\block\aes\aes.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_blowfish_blfs_tab.obj: src\block\blowfish\blfs_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_blowfish.obj: src\block\blowfish\blowfish.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_camellia.obj: src\block\camellia\camellia.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_cascade.obj: src\block\cascade\cascade.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_cast_cast128.obj: src\block\cast\cast128.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_cast_cast256.obj: src\block\cast\cast256.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_des.obj: src\block\des\des.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_des_des_tab.obj: src\block\des\des_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_des_desx.obj: src\block\des\desx.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_gost_28147.obj: src\block\gost_28147\gost_28147.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_idea.obj: src\block\idea\idea.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_kasumi.obj: src\block\kasumi\kasumi.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_lion.obj: src\block\lion\lion.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_lubyrack.obj: src\block\lubyrack\lubyrack.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_mars.obj: src\block\mars\mars.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_misty1.obj: src\block\misty1\misty1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_noekeon.obj: src\block\noekeon\noekeon.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_noekeon_simd.obj: src\block\noekeon_simd\noekeon_simd.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_rc2.obj: src\block\rc2\rc2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_rc5.obj: src\block\rc5\rc5.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_rc6.obj: src\block\rc6\rc6.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_safer_safer_sk.obj: src\block\safer\safer_sk.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_seed.obj: src\block\seed\seed.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_seed_seed_tab.obj: src\block\seed\seed_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_serpent.obj: src\block\serpent\serpent.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_serpent_simd_serp_simd.obj: src\block\serpent_simd\serp_simd.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_skipjack.obj: src\block\skipjack\skipjack.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_square_sqr_tab.obj: src\block\square\sqr_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_square.obj: src\block\square\square.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_tea.obj: src\block\tea\tea.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_twofish_two_tab.obj: src\block\twofish\two_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_twofish.obj: src\block\twofish\twofish.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_xtea.obj: src\block\xtea\xtea.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\block_xtea_simd.obj: src\block\xtea_simd\xtea_simd.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_ocsp.obj: src\cert\ocsp\ocsp.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_ocsp_ocsp_types.obj: src\cert\ocsp\ocsp_types.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_certstor.obj: src\cert\x509\certstor.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_crl_ent.obj: src\cert\x509\crl_ent.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_key_constraint.obj: src\cert\x509\key_constraint.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_pkcs10.obj: src\cert\x509\pkcs10.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509_ca.obj: src\cert\x509\x509_ca.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509_crl.obj: src\cert\x509\x509_crl.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509_ext.obj: src\cert\x509\x509_ext.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509_obj.obj: src\cert\x509\x509_obj.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509cert.obj: src\cert\x509\x509cert.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509opt.obj: src\cert\x509\x509opt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509path.obj: src\cert\x509\x509path.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\cert_x509_x509self.obj: src\cert\x509\x509self.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\checksum_adler32.obj: src\checksum\adler32\adler32.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\checksum_crc24.obj: src\checksum\crc24\crc24.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\checksum_crc32.obj: src\checksum\crc32\crc32.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\codec_base64.obj: src\codec\base64\base64.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\codec_hex.obj: src\codec\hex\hex.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\codec_openpgp.obj: src\codec\openpgp\openpgp.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\codec_pem.obj: src\codec\pem\pem.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_aont_package.obj: src\constructs\aont\package.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_cryptobox.obj: src\constructs\cryptobox\cryptobox.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_cryptobox_psk.obj: src\constructs\cryptobox_psk\cryptobox_psk.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_fpe_fe1.obj: src\constructs\fpe_fe1\fpe_fe1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_rfc3394.obj: src\constructs\rfc3394\rfc3394.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_srp6.obj: src\constructs\srp6\srp6.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_srp6_srp6_files.obj: src\constructs\srp6\srp6_files.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\constructs_tss.obj: src\constructs\tss\tss.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\credentials_credentials_manager.obj: src\credentials\credentials_manager.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_core_modes.obj: src\engine\core_engine\core_modes.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_def_pk_ops.obj: src\engine\core_engine\def_pk_ops.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_def_powm.obj: src\engine\core_engine\def_powm.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_lookup_block.obj: src\engine\core_engine\lookup_block.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_lookup_hash.obj: src\engine\core_engine\lookup_hash.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_lookup_mac.obj: src\engine\core_engine\lookup_mac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_lookup_pbkdf.obj: src\engine\core_engine\lookup_pbkdf.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_core_engine_lookup_stream.obj: src\engine\core_engine\lookup_stream.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_dyn_engine.obj: src\engine\dyn_engine\dyn_engine.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine.obj: src\engine\engine.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\engine_simd_engine.obj: src\engine\simd_engine\simd_engine.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\entropy_cryptoapi_rng_es_capi.obj: src\entropy\cryptoapi_rng\es_capi.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\entropy_hres_timer.obj: src\entropy\hres_timer\hres_timer.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\entropy_win32_stats_es_win32.obj: src\entropy\win32_stats\es_win32.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_algo_filt.obj: src\filters\algo_filt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_basefilt.obj: src\filters\basefilt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_buf_filt.obj: src\filters\buf_filt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_codec_filt_b64_filt.obj: src\filters\codec_filt\b64_filt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_codec_filt_hex_filt.obj: src\filters\codec_filt\hex_filt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_data_snk.obj: src\filters\data_snk.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_data_src.obj: src\filters\data_src.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_filter.obj: src\filters\filter.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_out_buf.obj: src\filters\out_buf.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_pipe.obj: src\filters\pipe.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_pipe_io.obj: src\filters\pipe_io.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_pipe_rw.obj: src\filters\pipe_rw.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_pk_filts.obj: src\filters\pk_filts\pk_filts.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_secqueue.obj: src\filters\secqueue.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_threaded_fork.obj: src\filters\threaded_fork.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\filters_transform_filter.obj: src\filters\transform_filter.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_bmw_512.obj: src\hash\bmw_512\bmw_512.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_comb4p.obj: src\hash\comb4p\comb4p.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_gost_3411.obj: src\hash\gost_3411\gost_3411.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_has160.obj: src\hash\has160\has160.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_keccak.obj: src\hash\keccak\keccak.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_md2.obj: src\hash\md2\md2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_md4.obj: src\hash\md4\md4.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_md5.obj: src\hash\md5\md5.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_mdx_hash.obj: src\hash\mdx_hash\mdx_hash.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_par_hash.obj: src\hash\par_hash\par_hash.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_rmd128.obj: src\hash\rmd128\rmd128.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_rmd160.obj: src\hash\rmd160\rmd160.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_sha1_sha160.obj: src\hash\sha1\sha160.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_sha2_32.obj: src\hash\sha2_32\sha2_32.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_sha2_64.obj: src\hash\sha2_64\sha2_64.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_skein_skein_512.obj: src\hash\skein\skein_512.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_tiger_tig_tab.obj: src\hash\tiger\tig_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_tiger.obj: src\hash\tiger\tiger.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_whirlpool_whrl_tab.obj: src\hash\whirlpool\whrl_tab.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\hash_whirlpool_whrlpool.obj: src\hash\whirlpool\whrlpool.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf.obj: src\kdf\kdf.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_kdf1.obj: src\kdf\kdf1\kdf1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_kdf2.obj: src\kdf\kdf2\kdf2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_mgf1.obj: src\kdf\mgf1\mgf1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_prf_ssl3.obj: src\kdf\prf_ssl3\prf_ssl3.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_prf_tls.obj: src\kdf\prf_tls\prf_tls.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\kdf_prf_x942.obj: src\kdf\prf_x942\prf_x942.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_get_enc.obj: src\libstate\get_enc.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_global_rng.obj: src\libstate\global_rng.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_global_state.obj: src\libstate\global_state.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_init.obj: src\libstate\init.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate.obj: src\libstate\libstate.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_lookup.obj: src\libstate\lookup.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_oid_lookup_oids.obj: src\libstate\oid_lookup\oids.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_policy.obj: src\libstate\policy.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\libstate_scan_name.obj: src\libstate\scan_name.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac_cbc_mac.obj: src\mac\cbc_mac\cbc_mac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac_cmac.obj: src\mac\cmac\cmac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac_hmac.obj: src\mac\hmac\hmac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac.obj: src\mac\mac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac_ssl3mac_ssl3_mac.obj: src\mac\ssl3mac\ssl3_mac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\mac_x919_mac.obj: src\mac\x919_mac\x919_mac.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_big_code.obj: src\math\bigint\big_code.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_big_io.obj: src\math\bigint\big_io.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_big_ops2.obj: src\math\bigint\big_ops2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_big_ops3.obj: src\math\bigint\big_ops3.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_big_rand.obj: src\math\bigint\big_rand.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint.obj: src\math\bigint\bigint.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_bigint_divide.obj: src\math\bigint\divide.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_ec_gfp_point_gfp.obj: src\math\ec_gfp\point_gfp.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_asm.obj: src\math\mp\mp_asm.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_comba.obj: src\math\mp\mp_comba.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_karat.obj: src\math\mp\mp_karat.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_misc.obj: src\math\mp\mp_misc.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_monty.obj: src\math\mp\mp_monty.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_mulop.obj: src\math\mp\mp_mulop.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_mp_mp_shift.obj: src\math\mp\mp_shift.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_dsa_gen.obj: src\math\numbertheory\dsa_gen.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_jacobi.obj: src\math\numbertheory\jacobi.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_make_prm.obj: src\math\numbertheory\make_prm.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_mp_numth.obj: src\math\numbertheory\mp_numth.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_numthry.obj: src\math\numbertheory\numthry.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_pow_mod.obj: src\math\numbertheory\pow_mod.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_powm_fw.obj: src\math\numbertheory\powm_fw.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_powm_mnt.obj: src\math\numbertheory\powm_mnt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_primes.obj: src\math\numbertheory\primes.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_reducer.obj: src\math\numbertheory\reducer.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\math_numbertheory_ressol.obj: src\math\numbertheory\ressol.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_aead.obj: src\modes\aead\aead.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_aead_ccm.obj: src\modes\aead\ccm\ccm.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_aead_eax.obj: src\modes\aead\eax\eax.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_aead_gcm.obj: src\modes\aead\gcm\gcm.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_aead_ocb.obj: src\modes\aead\ocb\ocb.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_cbc.obj: src\modes\cbc\cbc.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_cfb.obj: src\modes\cfb\cfb.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_ecb.obj: src\modes\ecb\ecb.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_mode_pad.obj: src\modes\mode_pad\mode_pad.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\modes_xts.obj: src\modes\xts\xts.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\passhash_bcrypt.obj: src\passhash\bcrypt\bcrypt.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\passhash_passhash9.obj: src\passhash\passhash9\passhash9.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbe_get_pbe.obj: src\pbe\get_pbe.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbe_pbes1.obj: src\pbe\pbes1\pbes1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbe_pbes2.obj: src\pbe\pbes2\pbes2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbkdf.obj: src\pbkdf\pbkdf.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbkdf_pbkdf1.obj: src\pbkdf\pbkdf1\pbkdf1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pbkdf_pbkdf2.obj: src\pbkdf\pbkdf2\pbkdf2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_eme.obj: src\pk_pad\eme.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_eme1.obj: src\pk_pad\eme1\eme1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_eme_pkcs.obj: src\pk_pad\eme_pkcs\eme_pkcs.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa1.obj: src\pk_pad\emsa1\emsa1.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa1_bsi.obj: src\pk_pad\emsa1_bsi\emsa1_bsi.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa2.obj: src\pk_pad\emsa2\emsa2.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa3.obj: src\pk_pad\emsa3\emsa3.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa4.obj: src\pk_pad\emsa4\emsa4.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_emsa_raw.obj: src\pk_pad\emsa_raw\emsa_raw.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pk_pad_hash_id.obj: src\pk_pad\hash_id\hash_id.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_blinding.obj: src\pubkey\blinding.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_dh.obj: src\pubkey\dh\dh.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_dl_algo.obj: src\pubkey\dl_algo\dl_algo.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_dl_group.obj: src\pubkey\dl_group\dl_group.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_dlies.obj: src\pubkey\dlies\dlies.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_dsa.obj: src\pubkey\dsa\dsa.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_ec_group.obj: src\pubkey\ec_group\ec_group.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_ecc_key.obj: src\pubkey\ecc_key\ecc_key.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_ecdh.obj: src\pubkey\ecdh\ecdh.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_ecdsa.obj: src\pubkey\ecdsa\ecdsa.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_elgamal.obj: src\pubkey\elgamal\elgamal.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_gost_3410.obj: src\pubkey\gost_3410\gost_3410.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_if_algo.obj: src\pubkey\if_algo\if_algo.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_keypair.obj: src\pubkey\keypair\keypair.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_nr.obj: src\pubkey\nr\nr.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_pk_algs.obj: src\pubkey\pk_algs.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_pk_keys.obj: src\pubkey\pk_keys.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_pkcs8.obj: src\pubkey\pkcs8.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey.obj: src\pubkey\pubkey.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_rsa.obj: src\pubkey\rsa\rsa.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_rw.obj: src\pubkey\rw\rw.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_workfactor.obj: src\pubkey\workfactor.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\pubkey_x509_key.obj: src\pubkey\x509_key.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\rng_hmac_rng.obj: src\rng\hmac_rng\hmac_rng.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\rng_randpool.obj: src\rng\randpool\randpool.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\rng.obj: src\rng\rng.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\rng_x931_rng.obj: src\rng\x931_rng\x931_rng.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\selftest.obj: src\selftest\selftest.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\stream_ctr.obj: src\stream\ctr\ctr.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\stream_ofb.obj: src\stream\ofb\ofb.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\stream_rc4.obj: src\stream\rc4\rc4.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\stream_salsa20.obj: src\stream\salsa20\salsa20.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\stream_stream_cipher.obj: src\stream\stream_cipher.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_cert_req.obj: src\tls\msg_cert_req.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_cert_verify.obj: src\tls\msg_cert_verify.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_certificate.obj: src\tls\msg_certificate.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_client_hello.obj: src\tls\msg_client_hello.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_client_kex.obj: src\tls\msg_client_kex.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_finished.obj: src\tls\msg_finished.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_hello_verify.obj: src\tls\msg_hello_verify.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_next_protocol.obj: src\tls\msg_next_protocol.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_server_hello.obj: src\tls\msg_server_hello.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_server_kex.obj: src\tls\msg_server_kex.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_msg_session_ticket.obj: src\tls\msg_session_ticket.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_alert.obj: src\tls\tls_alert.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_blocking.obj: src\tls\tls_blocking.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_channel.obj: src\tls\tls_channel.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_ciphersuite.obj: src\tls\tls_ciphersuite.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_client.obj: src\tls\tls_client.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_extensions.obj: src\tls\tls_extensions.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_handshake_hash.obj: src\tls\tls_handshake_hash.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_handshake_io.obj: src\tls\tls_handshake_io.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_handshake_state.obj: src\tls\tls_handshake_state.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_heartbeats.obj: src\tls\tls_heartbeats.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_policy.obj: src\tls\tls_policy.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_record.obj: src\tls\tls_record.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_server.obj: src\tls\tls_server.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_session.obj: src\tls\tls_session.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_session_key.obj: src\tls\tls_session_key.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_session_manager.obj: src\tls\tls_session_manager.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_suite_info.obj: src\tls\tls_suite_info.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\tls_version.obj: src\tls\tls_version.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_assert.obj: src\utils\assert.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_calendar.obj: src\utils\calendar.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_charset.obj: src\utils\charset.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_cpuid.obj: src\utils\cpuid.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_datastor.obj: src\utils\datastor\datastor.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_dyn_load.obj: src\utils\dyn_load\dyn_load.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_parsing.obj: src\utils\parsing.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_semaphore.obj: src\utils\semaphore.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_version.obj: src\utils\version.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+build\lib\utils_zero_mem.obj: src\utils\zero_mem.cpp
+	$(CXX) /Ibuild\include $(LIB_FLAGS)  /nologo /c $? /Fo$@
+
+
+build\checks\bench.obj: checks\bench.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\bigint.obj: checks\bigint.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\check.obj: checks\check.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\cvc_tests.obj: checks\cvc_tests.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\dolook.obj: checks\dolook.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\ec_tests.obj: checks\ec_tests.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\ecdh.obj: checks\ecdh.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\ecdsa.obj: checks\ecdsa.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\misc.obj: checks\misc.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\ocb.obj: checks\ocb.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\pk.obj: checks\pk.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\pk_bench.obj: checks\pk_bench.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\timer.obj: checks\timer.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\tls.obj: checks\tls.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\validate.obj: checks\validate.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+build\checks\x509.obj: checks\x509.cpp
+	$(CXX) /Ibuild\include $(CHECK_FLAGS)  /nologo /c $? /Fo$@
+
+
+### Link Commands
+$(CHECK): $(LIBRARIES) $(CHECKOBJS)
+	$(CXX) /Fe$@ $(CHECKOBJS) $(BOTAN_LIB) $(LINK_TO)
+
+$(BOTAN_LIB): $(LIBOBJS)
+!If "$(SO_OBJ_FLAGS)" == ""
+	$(AR) /OUT:$(BOTAN_LIB) $(LIBOBJS)
+!Else
+	$(LIB_LINK_CMD) /Fe$(LIBNAME) $(LIBOBJS) $(LINK_TO)
+!Endif
+
+### Fake Targets
+docs:
+	$(COPY) readme.txt build\docs
+	$(COPY) doc/*.rst build\docs\manual
+
+clean:
+	$(RM) build\lib\* build\checks\*
+	$(RM) *.manifest *.exp *.dll
+	$(RM) $(LIBRARIES) $(CHECK)
+
+distclean: clean
+	$(RM_R) build
+	$(RMDIR) build\include\botan\internal
+	$(RMDIR) build\include\botan
+	$(RMDIR) build\include
+	$(RMDIR) build\lib build\checks
+	$(RMDIR) build
+	$(RM) Makefile $(LIBNAME).* $(CHECK).*
+
+### Install Commands
+install: $(LIBRARIES)
+	-$(MKDIR) $(DESTDIR)\include\botan
+	$(INSTALL_CMD) botan.* $(DESTDIR)
+	$(INSTALL_CMD) build\include\botan\*.h $(DESTDIR)\include\botan

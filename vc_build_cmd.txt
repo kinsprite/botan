@@ -1,0 +1,5 @@
+D:\apps\Python27\python.exe configure.py --cc=msvc --cpu=x86_32 --disable-aes-ni --disable-ssse3 --disable-sse2
+nmake
+nmake check 
+nmake install
+
