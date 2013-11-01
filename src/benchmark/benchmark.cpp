@@ -15,6 +15,7 @@
 #include <memory>
 #include <vector>
 #include <chrono>
+#include <functional>
 
 namespace Botan {
 

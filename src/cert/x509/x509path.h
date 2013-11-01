@@ -63,6 +63,17 @@ class BOTAN_DLL Path_Validation_Restrictions
 /**
 * Represents the result of a PKIX path validation
 */
+
+class BOTAN_DLL Path_Validation_Result;
+
+/**
+* PKIX Path Validation
+*/
+Path_Validation_Result BOTAN_DLL x509_path_validate(
+   const std::vector<X509_Certificate>& end_certs,
+   const Path_Validation_Restrictions& restrictions,
+   const std::vector<Certificate_Store*>& certstores);
+
 class BOTAN_DLL Path_Validation_Result
    {
    public:
@@ -144,14 +155,6 @@ class BOTAN_DLL Path_Validation_Result
 
       std::vector<X509_Certificate> m_cert_path;
    };
-
-/**
-* PKIX Path Validation
-*/
-Path_Validation_Result BOTAN_DLL x509_path_validate(
-   const std::vector<X509_Certificate>& end_certs,
-   const Path_Validation_Restrictions& restrictions,
-   const std::vector<Certificate_Store*>& certstores);
 
 /**
 * PKIX Path Validation

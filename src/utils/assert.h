@@ -10,6 +10,10 @@
 
 #include <botan/build.h>
 
+#if defined(_MSC_VER) && (_MSC_FULL_VER <= 180021005)
+  #define __func__ __FUNCTION__
+#endif
+
 namespace Botan {
 
 /**

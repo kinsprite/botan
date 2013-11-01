@@ -234,9 +234,17 @@ class BOTAN_DLL Channel
 
       /* cipher states for each epoch - epoch 0 is plaintext, thus null cipher state */
       std::map<u16bit, std::shared_ptr<Connection_Cipher_State>> m_write_cipher_states =
+      #if defined(_MSC_VER) && (_MSC_FULL_VER <= 180021005)
+         { { { 0, nullptr } } };
+      #else
          { { 0, nullptr } };
+      #endif
       std::map<u16bit, std::shared_ptr<Connection_Cipher_State>> m_read_cipher_states =
+      #if defined(_MSC_VER) && (_MSC_FULL_VER <= 180021005)
+         { { { 0, nullptr } } };
+      #else
          { { 0, nullptr } };
+      #endif
 
       /* I/O buffers */
       secure_vector<byte> m_writebuf;

@@ -14,6 +14,10 @@
 #include <stdexcept>
 #include <string>
 
+#if defined(_MSC_VER) && (_MSC_FULL_VER <= 180021005)
+  #define noexcept throw()
+#endif
+
 namespace Botan {
 
 typedef std::runtime_error Exception;
