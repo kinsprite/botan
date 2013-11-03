@@ -78,7 +78,7 @@ size_t XTS_Mode::update_granularity() const
 
 size_t XTS_Mode::minimum_final_size() const
    {
-   return cipher().block_size() + 1;
+   return cipher().block_size();
    }
 
 Key_Length_Specification XTS_Mode::key_spec() const
@@ -194,7 +194,11 @@ void XTS_Encryption::finish(secure_vector<byte>& buffer, size_t offset)
 
       secure_vector<byte> last(buf + full_blocks, buf + full_blocks + final_bytes);
       buffer.resize(full_blocks + offset);
-      update(buffer, offset);
+
+      if (!buffer.empty())
+         {
+         update(buffer, offset);
+         }
 
       xor_buf(last, tweak(), BS);
       cipher().encrypt(last);
@@ -269,7 +273,11 @@ void XTS_Decryption::finish(secure_vector<byte>& buffer, size_t offset)
 
       secure_vector<byte> last(buf + full_blocks, buf + full_blocks + final_bytes);
       buffer.resize(full_blocks + offset);
-      update(buffer, offset);
+
+      if (!buffer.empty())
+         {
+         update(buffer, offset);
+         }
 
       xor_buf(last, tweak() + BS, BS);
       cipher().decrypt(last);

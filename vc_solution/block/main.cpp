@@ -111,8 +111,8 @@ int main()
 {
     TestAES();
 
-    // AES/XTS min 32 bytes (block size 16)
-    std::string user_data = "abcdef0123456789abcdef0123456789"; 
+    // AES/XTS: 1 to 2^20 blocks (block size 16)
+    std::string user_data = "0123456789abcdef";
 
     if (!TestAES_XTS(std::make_shared<Botan::Keccak_1600>(256),
                      std::make_shared<Botan::AES_256>(),
