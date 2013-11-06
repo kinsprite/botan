@@ -82,7 +82,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\algo_base\symkey.cpp" />
     <ClCompile Include="..\..\src\block\aes\aes.cpp" />
-    <ClCompile Include="..\..\src\block\aes_ssse3\aes_ssse3.cpp" />
     <ClCompile Include="..\..\src\codec\base64\base64.cpp" />
     <ClCompile Include="..\..\src\codec\hex\hex.cpp" />
     <ClCompile Include="..\..\src\hash\keccak\keccak.cpp" />

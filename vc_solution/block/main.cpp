@@ -1,6 +1,5 @@
 
 #include <botan/aes.h>
-#include <botan/aes_ssse3.h>
 #include <botan/keccak.h>
 #include <botan/mode_pad.h>
 #include <botan/xts.h>
@@ -47,17 +46,6 @@ void TestAES()
     {
         std::cout << "AES: encrypt/decrypt fail!" << std::endl;
     }
-
-#if !defined(_DEBUG) && !defined(DEBUG)
-    Botan::AES_256_SSSE3 aes_ssse3;
-    aes_ssse3.set_key(aes_key);
-    aes.decrypt(out_data, dec_data);
-
-    if (dec_data != in_data)
-    {
-        std::cout << "AES SSSE3: decrypt fail!" << std::endl;
-    }
-#endif
 }
 
 bool TestAES_XTS(
@@ -106,7 +94,6 @@ bool TestAES_XTS(
     return in_data == in_data_orig;
 }
 
-
 int main()
 {
     TestAES();
@@ -128,5 +115,3 @@ int main()
         std::cout << "ASE-128/XTS fail!" << std::endl;
     }
 }
-
-

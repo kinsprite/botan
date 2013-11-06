@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\src\block\aes\aes.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\block\aes_ssse3\aes_ssse3.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

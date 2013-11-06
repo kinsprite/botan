@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\src\hash\keccak\keccak.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\hash\sha1_sse2\sha1_sse2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\hash\sha1\sha160.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

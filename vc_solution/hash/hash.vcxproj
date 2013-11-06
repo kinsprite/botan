@@ -84,7 +84,6 @@
     <ClCompile Include="..\..\src\hash\md5\md5.cpp" />
     <ClCompile Include="..\..\src\hash\mdx_hash\mdx_hash.cpp" />
     <ClCompile Include="..\..\src\hash\sha1\sha160.cpp" />
-    <ClCompile Include="..\..\src\hash\sha1_sse2\sha1_sse2.cpp" />
     <ClCompile Include="..\..\src\hash\sha2_32\sha2_32.cpp" />
     <ClCompile Include="..\..\src\hash\sha2_64\sha2_64.cpp" />
     <ClCompile Include="..\..\src\utils\assert.cpp" />
